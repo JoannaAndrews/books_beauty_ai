@@ -40,27 +40,50 @@ export const generateLooksForBook = async (req, res) => {
     }
 
     // Step 2: Send to OpenAI
+    //     const prompt = `
+    // Generate 3 creative makeup looks inspired by this book description:
+
+    // "${description}"
+
+    // Respond with ONLY a raw JSON array of objects, where each object has "title" and "description" fields. Do not include any explanation or markdown formatting.
+    // `;
+
     const prompt = `
 Generate 3 creative makeup looks inspired by this book description:
 
 "${description}"
 
-Respond with ONLY a raw JSON array of objects, where each object has "title" and "description" fields. Do not include any explanation or markdown formatting.
+Respond with ONLY a raw JSON array (no code block, no explanation). Each object must have a "title" and "description".
 `;
 
     const openaiRes = await openai.chat.completions.create({
-      model: "openrouter/cypher-alpha:free",
+      model: "mistralai/mistral-small-3.1-24b-instruct:free",
       messages: [{ role: "user", content: prompt }],
     });
 
-    const text = openaiRes.choices[0].message.content;
+    let text = openaiRes.choices[0].message.content;
 
     // Try parsing JSON output from the model
+
+
+    // text = text.replace(/```(?:json)?\s*([\s\S]*?)\s*```/, "$1").trim();
+
+    // Attempt to extract clean JSON from within a code block
+    const codeBlockMatch = text.match(/```(?:json)?\s*([\s\S]*?)\s*```/i);
+
+    if (codeBlockMatch) {
+      text = codeBlockMatch[1].trim(); // Extract only the JSON inside the code block
+    } else {
+      text = text.trim(); // If no code block, just trim any extra whitespace
+    }
+
+
     let looks_separated;
     try {
       looks_separated = JSON.parse(text);
     } catch (e) {
       console.error("Failed to parse JSON:", e);
+      console.error("Raw OpenAI response was:", openaiRes.choices[0].message.content);
       looks_separated = []; // fallback
     }
 
