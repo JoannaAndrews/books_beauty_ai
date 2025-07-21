@@ -12,3 +12,8 @@ engineering
 
 
 ● I also designed a responsive React.js frontend for users to search for books and view personalized recommendations
+
+<img width="347" height="167" alt="image" src="https://github.com/user-attachments/assets/163c910d-dba9-4225-a71f-7f74675982a3" />
+
+
+<img width="920" height="231" alt="image" src="https://github.com/user-attachments/assets/3900fca5-5111-4e86-8c47-2ca55bc0b89f" />
