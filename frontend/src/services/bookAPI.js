@@ -11,7 +11,6 @@
 //   return res.data;
 // };
 
-
 export const getLooksForBook = async (title) => {
   const res = await fetch(`/api/books?title=${encodeURIComponent(title)}`);
   if (!res.ok) {
