@@ -45,7 +45,7 @@ const SearchBar = () => {
 
         <form onSubmit={handleSearch}>
           <VStack spacing={6} align="center">
-            <Heading>Search for a Book to Get Makeup Inspiration: </Heading>
+            <Heading color="white">Search for a Book to Get Makeup Inspiration: </Heading>
             <Input
               placeholder="Book Name"
               value={query}
