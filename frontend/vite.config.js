@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:5000"
+        target: "https://books-beauty-ai.onrender.com"//"http://localhost:5000"
       }
     }
   }
