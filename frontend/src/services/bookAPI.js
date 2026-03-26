@@ -10,9 +10,10 @@
 //   const res = await axios.post(`${BASE_URL}/makeup/generate`, { description });
 //   return res.data;
 // };
+const API_URL = import.meta.env.VITE_API_URL
 
 export const getLooksForBook = async (title) => {
-  const res = await fetch(`/api/books?title=${encodeURIComponent(title)}`);
+  const res = await fetch(`${API_URL}/api/books?title=${encodeURIComponent(title)}`);
   if (!res.ok) {
     console.error("Failed to fetch looks:", res.statusText);
     return [];
