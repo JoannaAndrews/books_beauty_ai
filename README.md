@@ -17,3 +17,6 @@ engineering
 
 
 <img width="920" height="231" alt="image" src="https://github.com/user-attachments/assets/3900fca5-5111-4e86-8c47-2ca55bc0b89f" />
+
+The deployed website can be found at this link: https://booksbeautyai.vercel.app/
+
